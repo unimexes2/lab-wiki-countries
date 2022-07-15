@@ -1,12 +1,32 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom"; 
-
+import axios from "axios";
 function CountriesList  (props) {
-  const [countries, setCountry] = useState(props.countries);
+  const [countries, setCountry] = useState([]);
+
 
   // This effect depends on `props.projects`.
   // It will run on initial render and every time
 
+  useEffect(() => {
+    axios
+      .get("https://ih-countries-api.herokuapp.com/countries")
+      .then((response) => {
+        console.log("response.data", response.data);
+        setCountry([...response.data]);
+         
+      });
+  }, []);
+
+
+  
+
+
+
+
+
+
+  
   
  // console.log(countries)
   const mystyle = {
@@ -30,7 +50,7 @@ function CountriesList  (props) {
     
     flag='https://flagpedia.net/data/flags/icon/72x54/'+flag +'.png'
     let href="/countries/"+country.alpha3Code
-  //  console.log(href)
+   console.log(href,"href")
     
         return (   
             <div>
