@@ -21,7 +21,7 @@ function App() {
         setCountry([...response.data]);
          console.log("llega",countriesData)
       });
-  }, [countriesData]);
+  }, []);
 
  
     
