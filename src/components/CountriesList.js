@@ -1,5 +1,4 @@
 import { useState, useEffect } from "react";
-import { Link } from "react-router-dom"; 
 import axios from "axios";
 function CountriesList  (props) {
   const [countries, setCountry] = useState([]);
@@ -12,7 +11,7 @@ function CountriesList  (props) {
     axios
       .get("https://ih-countries-api.herokuapp.com/countries")
       .then((response) => {
-        console.log("response.data", response.data);
+       // console.log("response.data", response.data);
         setCountry([...response.data]);
          
       });
@@ -35,7 +34,7 @@ function CountriesList  (props) {
     padding: "10px",
     fontFamily: "Arial",
     maxheight:"300px",
-  
+  allignItem:"left",
     overflow: 'scroll',
      
   };
@@ -43,22 +42,20 @@ function CountriesList  (props) {
   return (
 <div>
 <div className="col-5" style={{mystyle}}>
-            <div className="list-group"style={{mystyle}}>
+            <div className="list-group"style={{height:'500px',overflow: 'scroll'}}>
            
             {countries.map((country) => {
       let flag= country.alpha2Code.toLowerCase()
     
     flag='https://flagpedia.net/data/flags/icon/72x54/'+flag +'.png'
     let href="/countries/"+country.alpha3Code
-   console.log(href,"href")
+ //  console.log(href,"href")
     
         return (   
             <div>
          
-            <a className="list-group-item list-group-item-action" href={href}><img src={flag}/> 
-            
-            
-            
+            <a style={{display:"flex", alignItems: 'flex-end'}}className="list-group-item list-group-item-action" href={href}><img src={flag}/> 
+                          
             {country.name.official}</a>
             </div>    
         );
